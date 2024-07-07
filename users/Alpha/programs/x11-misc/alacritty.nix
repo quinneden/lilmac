@@ -23,9 +23,9 @@
       };
 
       window = {
-        padding = {
-          x = 12;
-          y = 12;
+        padding = rec {
+          x = 8;
+          y = x;
         };
       };
 

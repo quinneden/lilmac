@@ -53,6 +53,13 @@
       }
 
       {
+        mode = ["n"];
+        key = ";";
+        action = ":";
+        options.silent = true;
+      }
+
+      {
         key = "<Tab>";
         action = "<cmd>bn!<cr>";
         options.silent = true;
