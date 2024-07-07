@@ -52,13 +52,14 @@
         "border, 1, 2, default"
         "fade, 1, 2, md3_decel"
         "windows, 1, 4, md3_decel, popin 60%"
-        "workspaces, 1, 4, md3_decel, slidevert"
+        "workspaces, 1, 4, md3_decel, slide"
       ];
     };
 
     input = {
       kb_layout = "us";
 
+      # i actually like how it behaves this way lol
       accel_profile = "flat";
       follow_mouse = 1;
 
