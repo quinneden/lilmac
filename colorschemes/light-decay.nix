@@ -1,5 +1,5 @@
 {
-  wallpaper = ./wallpapers/art-lake.png;
+  wallpaper = ./wallpapers/sun-sea.png;
 
   neovim = pkgs: (let
     decay-nvim = pkgs.vimUtils.buildVimPlugin {

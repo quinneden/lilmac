@@ -12,7 +12,7 @@
     master.no_gaps_when_only = 1;
 
     general = let
-      gaps = 4;
+      gaps = 7;
       removeHash = colour: lib.replaceStrings ["#"] [""] colour;
     in {
       gaps_in = gaps;
