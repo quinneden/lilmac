@@ -24,6 +24,10 @@
       fmodstudio = prev.callPackage ../repo/fmodstudio.nix {};
     };
 
+    nvimSourcesOverlays = _: _: {
+      inherit (inputs) decay-nvim-src;
+    };
+
     miscOverlays = _: prev: let
       inherit (prev) system;
     in {
@@ -56,5 +60,6 @@
       fontsOverlays
       miscOverlays
       monorepoOverlays
+      nvimSourcesOverlays
     ];
 }

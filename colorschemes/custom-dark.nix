@@ -1,6 +1,6 @@
 # kinda based on ashes
 {
-  wallpaper = ./wallpapers/icy.png;
+  wallpaper = ./wallpapers/cozy.png;
 
   # no config yet
   neovim = _: {};
@@ -14,7 +14,7 @@
     };
 
     primary = {
-      background = "#141414";
+      background = "#161616";
       foreground = "#edeff0";
     };
 

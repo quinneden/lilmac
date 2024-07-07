@@ -65,8 +65,10 @@ in {
         add_newline = false;
         format = "$directory$git_branch$git_status$nix_shell$character";
 
-        directory = {
-          style = "cyan";
+        directory = let
+          inherit (flakeConfig.colorscheme) accents;
+        in {
+          style = accents.secondary;
           read_only = "";
           read_only_style = "yellow";
           home_symbol = flakeConfig.user.name;
