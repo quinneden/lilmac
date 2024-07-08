@@ -23,6 +23,7 @@
       };
 
       window = {
+        opacity = 0.95;
         padding = rec {
           x = 8;
           y = x;
@@ -34,7 +35,10 @@
       in {
         size = 10.5;
         offset.y = offset;
-        glyph_offset.y = if offset == 0 then 0 else offset;
+        glyph_offset.y =
+          if offset == 0
+          then 0
+          else offset;
 
         normal = {
           family = "monospace";

@@ -20,7 +20,7 @@
 
     # blur for unfocused windows
     windowrulev2 = [
-      "opacity 1.0 override 0.8 override 1.0 override,title:^(.*)$"
+      "opacity 1.0 override 0.9 override 1.0 override,title:^(.*)$"
     ];
 
     general = let
