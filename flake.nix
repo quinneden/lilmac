@@ -49,10 +49,25 @@
     ...
   } @ inputs: let
     config = import ./config.nix;
+    inherit (config) system;
   in
-    with config; {
-      nixosConfigurations."${hostname}" = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
+    with config; rec {
+      devShells.${system}.default = let
+        nixSystem = nixosConfigurations.${hostname};
+        vm = nixSystem.config.system.build.vm;
+        pkgs = import nixpkgs { inherit system; };
+        lib = pkgs.lib;
+      in
+        pkgs.mkShell {
+          name = "dev-shell";
+          buildInputs = [vm];
+          shellHook = ''
+            echo "Type ${lib.getExe vm} to run the system vm"
+          '';
+        };
+
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem rec {
+        inherit system;
 
         specialArgs = {
           inherit inputs system;

@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
-    systemd.variables = ["--all"];
+    systemd = {
+      enable = true;
+      variables = ["--all"];
+    };
   };
 
   imports = [

@@ -33,11 +33,10 @@
   virtualisation = {
     libvirtd.enable = true;
 
-    vmVariant.virtualisation = {
-      memorySize = 8048;
-      cores = 2;
-      graphics = false;
-    };
+    vmVariant.virtualisation = let
+      inherit (flakeConfig.modules.vm) settings;
+    in
+      settings;
 
     docker = {
       enable = true;

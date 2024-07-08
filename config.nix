@@ -5,15 +5,26 @@ rec {
   # the configs listed in this file.
   mainModule = ./crazy;
 
+  # the target system to build.
+  # NOTE: Not sure if this will all work in others though.
+  system = "x86_64-linux";
+
   # defines some important data consumed mostly by the flake & the mainModule config
   # in the flake we use the hostname so it's required, but timezone is used by ./crazy
   hostname = "crazy";
   timeZone = "America/Caracas";
 
-  # this is required since it's being used by the flake itself, allows the user (you) to
-  # enable/disable home-manager support, if enabled, the flake will look for ./${mainModule}/home-manager.nix
-  # to load a functional home manager configuration which is the one that consumes the userConfig one
   modules = {
+    # hardware settings for the vm! see devShells.${system}.default at flake.nix
+    vm.settings = {
+      graphics = false;
+      memorySize = 8048;
+      cores = 2;
+    };
+
+    # this is required since it's being used by the flake itself, allows the user (you) to
+    # enable/disable home-manager support, if enabled, the flake will look for ./${mainModule}/home-manager.nix
+    # to load a functional home manager configuration which is the one that consumes the userConfig one
     homeManager = {
       enable = true;
       userConfig = ./users/Alpha;
