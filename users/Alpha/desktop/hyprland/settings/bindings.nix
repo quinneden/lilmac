@@ -5,24 +5,21 @@
 }: {
   wayland.windowManager.hyprland.settings = {
     bind = let
-      utils = import ./utils.nix {
-        inherit pkgs lib;
-      };
+      utils = import ./utils.nix {inherit pkgs lib;};
+      num-workspaces = 7;
 
-      numWorkspaces = 10;
-
-      workspaces = builtins.concatLists (builtins.genList (
-          x: let
-            ws = let
-              c = (x + 1) / numWorkspaces;
-            in
-              builtins.toString (x + 1 - (c * numWorkspaces));
-          in [
-            "SUPER, ${ws}, workspace, ${toString (x + 1)}"
-            "SUPERSHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-          ]
-        )
-        numWorkspaces);
+      workspaces = let
+        generator = x: let
+          ws = let
+            c = (x + 1) / num-workspaces;
+          in
+            builtins.toString (x + 1 - (c * num-workspaces));
+        in [
+          "SUPER, ${ws}, workspace, ${toString (x + 1)}"
+          "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        ];
+      in
+        builtins.concatLists (builtins.genList generator num-workspaces);
 
       reloadAgs = utils.silentScript "reload-ags" ''
         pgrep -x .ags-wrapped > /dev/null 2>&1 && kill -9 $(pgrep -x .ags-wrapped)
