@@ -11,6 +11,18 @@
 
     master.no_gaps_when_only = 1;
 
+    # enable blur for popups
+    layerrule = [
+      "blur, bar"
+      "blurpopups, bar"
+      "ignorezero, bar"
+    ];
+
+    # blur for unfocused windows
+    windowrulev2 = [
+      "opacity 1.0 override 0.85 override 1.0 override,title:^(.*)$"
+    ];
+
     general = let
       gaps = 7;
       removeHash = colour: lib.replaceStrings ["#"] [""] colour;
@@ -30,14 +42,14 @@
       drop_shadow = false;
 
       blur = {
-        enabled = false;
+        enabled = true;
         brightness = 1.0;
         contrast = 1.0;
         new_optimizations = true;
         noise = 0.02;
-        passes = 4;
-        size = 10;
-        xray = true;
+        passes = 2;
+        size = 5;
+        xray = false;
       };
     };
 
@@ -82,7 +94,7 @@
 
     misc = {
       animate_mouse_windowdragging = true;
-      disable_autoreload = true;
+      disable_autoreload = false;
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       focus_on_activate = true;
