@@ -10,7 +10,7 @@
 
   imports = [
     ./settings/env.nix
-    ./settings/autostart.nix
+    # ./settings/autostart.nix
     ./settings/base.nix
     ./settings/bindings.nix
   ];

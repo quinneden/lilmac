@@ -44,7 +44,7 @@
     };
 
     picom-sdhand-src = {
-      url = "github:sdhand/picom";
+      url = "github:yshui/picom";
       flake = false;
     };
   };

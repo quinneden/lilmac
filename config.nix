@@ -35,7 +35,7 @@ rec {
       gtk.enable = true;
 
       aetherShell = {
-        enable = true;
+        enable = false;
 
         # these are the colors to be used in aether shell, by default
         # it takes the ones at `flakeConfig.colorscheme` but you can override

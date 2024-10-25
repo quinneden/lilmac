@@ -1,6 +1,7 @@
 {
   flakeConfig,
   inputs,
+  system,
   ...
 }:
 {
@@ -14,7 +15,7 @@
     };
 
     extraSpecialArgs = {
-      inherit inputs flakeConfig;
+      inherit inputs flakeConfig system;
     };
   };
 }
