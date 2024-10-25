@@ -42,7 +42,7 @@
 
     podman = {
       enable = true;
-      networkSocket.enable = true;
+      # networkSocket.enable = true;
       dockerSocket.enable = true;
     };
   };

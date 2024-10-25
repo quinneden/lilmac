@@ -3,7 +3,7 @@ rec {
   # this is where the configuration of the system will begin at
   # crazy is the default one and serves as an example on how to use all
   # the configs listed in this file.
-  mainModule = ./crazy;
+  mainModule = ./lilmac;
 
   # the target system to build.
   # NOTE: Not sure if this will all work in others though.
@@ -27,7 +27,7 @@ rec {
     # to load a functional home manager configuration which is the one that consumes the userConfig one
     homeManager = {
       enable = true;
-      userConfig = ./users/Quinn;
+      userConfig = ./users/quinn;
 
       # wether or not i should enable gtk configurations
       # disable if per example you're gonna use gnome as main

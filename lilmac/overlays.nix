@@ -65,7 +65,7 @@
       nixpkgs-f2k.overlays.window-managers
       nixpkgs-f2k.overlays.compositors
       webx.overlays.${system}.default
-      cutefetch.overlays.${system}.default
+      # cutefetch.overlays.${system}.default
       nexusfetch.overlays.${system}.default
       nixos-apple-silicon.overlays.default
     ])

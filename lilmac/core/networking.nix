@@ -23,7 +23,7 @@
       settings = {
         IPv6.Enabled = true;
         Settings.AutoConnect = true;
-        Settings.General.EnableNetworkConfiguration = true;
+        General.EnableNetworkConfiguration = true;
       };
     };
 

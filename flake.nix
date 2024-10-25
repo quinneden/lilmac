@@ -5,7 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-f2k.url = "github:moni-dz/nixpkgs-f2k";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    cutefetch.url = "github:alphatechnolog/cutefetch";
+    nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
+    # cutefetch.url = "github:alphatechnolog/cutefetch";
     webx.url = "github:face-hh/webx";
     nexusfetch.url = "gitlab:alxhr0/nexusfetch";
     aether-shell.url = "github:alphatechnolog/aether-shell";
@@ -83,6 +84,7 @@
         specialArgs = {
           inherit inputs system;
           flakeConfig = config;
+          secrets = builtins.fromJSON (builtins.readFile .secrets/common.json);
         };
 
         modules =

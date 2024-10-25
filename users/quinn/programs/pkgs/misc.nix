@@ -1,11 +1,11 @@
 {
   pkgs,
   inputs,
-  system,
+  flakeConfig,
   ...
 }:
 let
-  shellscripts = inputs.nix-shell-scripts.packages.${system}.default;
+  shellscripts = inputs.nix-shell-scripts.packages.${flakeConfig.system}.default;
 in
 {
   home.packages = with pkgs; [

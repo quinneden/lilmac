@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, secrets, ... }:
 {
   nix = {
     package = pkgs.nixVersions.git;
 
     settings = {
-      tokens = [ "github=${builtins.readFile ../../.github/token}" ];
+      tokens = [ "github=${secrets.github.token}" ];
       experimental-features = [
         "nix-command"
         "flakes"
