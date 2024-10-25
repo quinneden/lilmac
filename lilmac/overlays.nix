@@ -50,8 +50,9 @@
             src = inputs.picom-sdhand-src;
             version = "sdhand-git";
             buildInputs = (old.buildInputs or [ ]) ++ [
-              pkgs.pcre
+              pkgs.pcre0
               pkgs.xorg.xcbutil
+              pkgs.asciidoc
             ];
           });
 
