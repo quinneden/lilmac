@@ -2,7 +2,7 @@
   imports = [
     ./boot.nix
     ./env.nix
-    ./opengl.nix
+    ./graphics.nix
     ./networking.nix
     ./services.nix
     ./sound.nix
@@ -14,6 +14,6 @@
     ./virtualisation.nix
     ./bluetooth.nix
     ./shell.nix
-    ./steam.nix
+    # ./steam.nix
   ];
 }

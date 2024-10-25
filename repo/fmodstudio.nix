@@ -6,20 +6,22 @@
   buildFHSEnv,
   fetchurl,
   ...
-}: let
-  system = "x86_64-linux";
+}:
+let
+  system = "aarch64-linux";
   version = "2.02.22";
 
   # this comes with lfs in this repository.
   src = ../misc/fmodstudio20222linux64-installer.deb;
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "fmodstudio20222linux64-installer";
 
   inherit
     version
     system
     src
-  ;
+    ;
 
   nativeBuildInputs = [
     makeWrapper
@@ -30,64 +32,69 @@ in stdenv.mkDerivation rec {
     name = "${pname}-fhs-env";
     runScript = "";
 
-    targetPkgs = pkgs: with pkgs; [
-      xorg.libXrandr
-      xdg-utils
-      gsettings-desktop-schemas
-      hicolor-icon-theme
-      fontconfig
-      freetype
-      lsb-release
-    ];
+    targetPkgs =
+      pkgs: with pkgs; [
+        xorg.libXrandr
+        xdg-utils
+        gsettings-desktop-schemas
+        hicolor-icon-theme
+        fontconfig
+        freetype
+        lsb-release
+      ];
 
-    multiPkgs = pkgs: with pkgs; [
-      cups
-      gtk3
-      expat
-      libxkbcommon
-      alsa-lib
-      nss
-      libdrm
-      mesa
-      nspr
-      atk
-      dbus
-      at-spi2-core
-      pango
-      libva
-      openssl
-      cairo
-      libnotify
-      libuuid
-      udev
-      libappindicator
-      wayland
-      cpio
-      icu
-      libpulseaudio
-      libglvnd
-      glib
-      gdk-pixbuf
-      libxml2
-      zlib
-      clang
-      git
-      gnome2.GConf
-      libcap
-    ] ++ (with pkgs.xorg; [
-      libXcomposite
-      libXext
-      libXdamage
-      libXfixes
-      libxcb
-      libxshmfence
-      libXScrnSaver
-      libXtst
-      libX11
-      libXcursor
-      libXi
-      libXrender
-    ]);
+    multiPkgs =
+      pkgs:
+      with pkgs;
+      [
+        cups
+        gtk3
+        expat
+        libxkbcommon
+        alsa-lib
+        nss
+        libdrm
+        mesa
+        nspr
+        atk
+        dbus
+        at-spi2-core
+        pango
+        libva
+        openssl
+        cairo
+        libnotify
+        libuuid
+        udev
+        libappindicator
+        wayland
+        cpio
+        icu
+        libpulseaudio
+        libglvnd
+        glib
+        gdk-pixbuf
+        libxml2
+        zlib
+        clang
+        git
+        gnome2.GConf
+        libcap
+      ]
+      ++ (with pkgs.xorg; [
+        libXcomposite
+        libXext
+        libXdamage
+        libXfixes
+        libxcb
+        libxshmfence
+        libXScrnSaver
+        libXtst
+        libX11
+        libXcursor
+        libXi
+        libXrender
+      ]);
   };
 
   unpackCmd = "dpkg -x $curSrc src";
@@ -114,4 +121,3 @@ in stdenv.mkDerivation rec {
     runHook postInstall
   '';
 }
-

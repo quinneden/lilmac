@@ -1,7 +1,8 @@
 { flakeConfig, ... }:
-
 {
-  time = { inherit (flakeConfig) timeZone; };
+  time = {
+    inherit (flakeConfig) timeZone;
+  };
 
   networking = {
     hostName = flakeConfig.hostname;
@@ -12,7 +13,7 @@
         22
         4444
         8000
-        3000 
+        3000
       ];
     };
 
@@ -22,6 +23,7 @@
       settings = {
         IPv6.Enabled = true;
         Settings.AutoConnect = true;
+        Settings.General.EnableNetworkConfiguration = true;
       };
     };
 

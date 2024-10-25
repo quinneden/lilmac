@@ -9,8 +9,13 @@
     webx.url = "github:face-hh/webx";
     nexusfetch.url = "gitlab:alxhr0/nexusfetch";
     aether-shell.url = "github:alphatechnolog/aether-shell";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    ags.url = "github:Aylur/ags";
+    hyprland.url = "github:hyprwm/hyprland";
+    ags.url = "github:aylur/ags";
+
+    nixos-apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     decay-nvim-src = {
       url = "github:decaycs/decay.nvim";
@@ -43,28 +48,34 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    config = import ./config.nix;
-    inherit (config) system;
-  in
-    with config; rec {
-      devShells.${system}.default = let
-        nixSystem = nixosConfigurations.${hostname};
-        vm = nixSystem.config.system.build.vm;
-        pkgs = import nixpkgs { inherit system; };
-        lib = pkgs.lib;
-      in
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    let
+      config = import ./config.nix;
+      inherit (config) system;
+    in
+    with config;
+    rec {
+      devShells.${system}.default =
+        let
+          nixSystem = nixosConfigurations.${hostname};
+          vm = nixSystem.config.system.build.vm;
+          pkgs = import nixpkgs { inherit system; };
+          lib = pkgs.lib;
+        in
         pkgs.mkShell {
           name = "dev-shell";
-          buildInputs = [vm];
+          buildInputs = [ vm ];
           shellHook = ''
             echo "Type ${lib.getExe vm} to run the system vm"
           '';
         };
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem rec {
         inherit system;
@@ -75,10 +86,10 @@
         };
 
         modules =
-          [mainModule]
+          [ mainModule ]
           ++ (
-            if !config.modules.homeManager.enable
-            then []
+            if !config.modules.homeManager.enable then
+              [ ]
             else
               (with inputs; [
                 home-manager.nixosModules.home-manager

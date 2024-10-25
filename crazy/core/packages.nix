@@ -1,19 +1,27 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
-    wget
+    asahi-bless
+    bat
+    btrfs-progs
+    eza
     git
-    dotnet-sdk
+    hfsprogs
     libnotify
-    ntfs3g
+    rclone
+    ripgrep
+    wget
+    # dotnet-sdk
+    # ntfs3g
   ];
 
-  programs.java = {
-    enable = true;
-    package = pkgs.jdk22;
-  };
+  # programs.java = {
+  #   enable = true;
+  #   package = pkgs.jdk22;
+  # };
 
-  environment.sessionVariables = {
-    DOTNET_ROOT = "${pkgs.dotnet-sdk}";
-    _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
-  };
+  # environment.sessionVariables = {
+  #   DOTNET_ROOT = "${pkgs.dotnet-sdk}";
+  #   _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
+  # };
 }
